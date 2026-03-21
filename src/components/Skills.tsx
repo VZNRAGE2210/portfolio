@@ -51,7 +51,7 @@ export default function Skills() {
     
     // Radii for mobile vs desktop
     const radius = isMobile 
-      ? (level === 1 ? 85 : level === 2 ? 150 : 215)
+      ? (level === 1 ? 60 : level === 2 ? 105 : 150)
       : (level === 1 ? 120 : level === 2 ? 220 : 320);
 
     return {
@@ -110,7 +110,7 @@ export default function Skills() {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 1.5 }}
                 className="absolute z-0 border border-[var(--accent-secondary)]/10 rounded-full pointer-events-none"
-                style={{ width: isMobile ? 170 : 240, height: isMobile ? 170 : 240 }}
+                style={{ width: isMobile ? 120 : 240, height: isMobile ? 120 : 240 }}
               />
               {/* Middle Ring */}
               <motion.div
@@ -118,7 +118,7 @@ export default function Skills() {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 1.5, delay: 0.2 }}
                 className="absolute z-0 border border-[var(--accent-primary)]/10 rounded-full pointer-events-none"
-                style={{ width: isMobile ? 300 : 440, height: isMobile ? 300 : 440 }}
+                style={{ width: isMobile ? 210 : 440, height: isMobile ? 210 : 440 }}
               />
               {/* Outer Ring */}
               <motion.div
@@ -126,7 +126,7 @@ export default function Skills() {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 1.5, delay: 0.4 }}
                 className="absolute z-0 border border-[var(--accent-tertiary)]/10 rounded-full pointer-events-none"
-                style={{ width: isMobile ? 430 : 640, height: isMobile ? 430 : 640 }}
+                style={{ width: isMobile ? 300 : 640, height: isMobile ? 300 : 640 }}
               />
             </>
           )}
@@ -152,9 +152,9 @@ export default function Skills() {
                 >
                   <motion.div 
                     whileHover={{ scale: 1.05 }}
-                    className="flex items-center justify-center px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-[#0a061a]/80 backdrop-blur-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.5)] hover:border-[var(--accent-secondary)] hover:bg-[#0a061a] hover:shadow-[0_0_20px_var(--accent-secondary)] hover:shadow-opacity-20 transition-all cursor-default"
+                    className="flex items-center justify-center px-3 py-1.5 md:px-5 md:py-2.5 rounded-full bg-[#0a061a]/80 backdrop-blur-xl border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.5)] hover:border-[var(--accent-secondary)] hover:bg-[#0a061a] hover:shadow-[0_0_20px_var(--accent-secondary)] hover:shadow-opacity-20 transition-all cursor-default"
                   >
-                    <span className="text-[11px] md:text-sm font-semibold tracking-wide text-white/90 whitespace-nowrap">
+                    <span className="text-[10px] md:text-sm font-semibold tracking-wide text-white/90 whitespace-nowrap">
                       {tech.name}
                     </span>
                   </motion.div>
