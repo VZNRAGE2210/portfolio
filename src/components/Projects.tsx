@@ -92,8 +92,8 @@ export default function Projects() {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="projects" ref={sectionRef} className="section relative z-10 py-32">
-      <div className="max-w-6xl mx-auto w-full px-4 md:px-8 flex flex-col gap-32">
+    <section id="projects" ref={sectionRef} className="section relative z-10 py-16 md:py-32">
+      <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 md:px-8 flex flex-col gap-16 md:gap-32">
         
         {PROJECTS.map((project, idx) => {
           const isEven = idx % 2 === 0;
@@ -113,7 +113,7 @@ export default function Projects() {
                 } items-stretch`}
               >
                 {/* Image Block — no fixed aspect ratio, stretches to match text card height */}
-                <div className="w-full md:w-[60%] shrink-0 min-h-[280px] md:min-h-[400px] bg-[#0a061a] rounded-[1.5rem] border border-white/5 relative overflow-hidden group">
+                <div className="w-full md:w-[60%] shrink-0 aspect-[16/9] md:aspect-auto md:min-h-[400px] bg-[#0a061a] rounded-xl md:rounded-[1.5rem] border border-white/5 relative overflow-hidden group">
                   
                   {project.image ? (
                     <>
@@ -122,49 +122,49 @@ export default function Projects() {
                         alt={project.title} 
                         className="absolute inset-0 w-full h-full object-cover object-[center_top] opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" 
                       />
-                      <div className="absolute inset-0 shadow-[inset_0_0_80px_rgba(5,5,17,0.95)] pointer-events-none" />
-                      <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#050511] via-[#050511]/40 to-transparent z-10 pointer-events-none" />
+                      <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(5,5,17,0.9)] md:shadow-[inset_0_0_80px_rgba(5,5,17,0.95)] pointer-events-none" />
+                      <div className="absolute inset-x-0 bottom-0 h-[40%] md:h-[60%] bg-gradient-to-t from-[#050511] via-[#050511]/40 to-transparent z-10 pointer-events-none" />
                       {/* Inner glowing border */}
-                      <div className="absolute inset-0 border border-white/10 m-3 rounded-[1rem] pointer-events-none" />
+                      <div className="absolute inset-0 border border-white/10 m-2 md:m-3 rounded-lg md:rounded-[1rem] pointer-events-none" />
                     </>
                   ) : (
                     <>
                       <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-screen" />
                       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#050511] to-transparent z-10" />
                       
-                      <div className="absolute inset-0 flex flex-col items-center justify-center border-2 border-dashed border-white/10 m-6 rounded-2xl z-0">
-                        <p className="text-white/20 font-mono text-xs md:text-sm tracking-widest uppercase">Visualizing Interface</p>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center border-2 border-dashed border-white/10 m-4 md:m-6 rounded-xl md:rounded-2xl z-0">
+                        <p className="text-white/20 font-mono text-xs tracking-widest uppercase">Visualizing Interface</p>
                       </div>
                     </>
                   )}
                 </div>
 
-                {/* Overlapping Text Card — uses negative margin to overlap image, stretches to same height */}
+                {/* Text Card — clean stack on mobile, overlapping on desktop */}
                 <div
-                  className={`w-full md:w-[46%] z-20 mt-[-30px] md:mt-0 ${
+                  className={`w-full md:w-[46%] z-20 mt-4 md:mt-0 ${
                     isEven ? "md:ml-[-6%]" : "md:mr-[-6%]"
                   } flex`}
                 >
-                  <div className="w-full p-6 md:p-8 rounded-[1.5rem] bg-[#0d0b1a]/80 backdrop-blur-2xl border border-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-[1.01] flex flex-col justify-center">
-                    <p className="text-[10px] uppercase font-bold tracking-[0.2em] opacity-60 mb-2 text-white">
+                  <div className="w-full p-5 sm:p-6 md:p-8 rounded-xl md:rounded-[1.5rem] bg-[#0d0b1a] md:bg-[#0d0b1a]/80 backdrop-blur-none md:backdrop-blur-2xl border border-white/[0.08] md:border-white/[0.06] shadow-[0_4px_20px_rgba(0,0,0,0.4)] md:shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-transform duration-300 md:hover:scale-[1.01] flex flex-col justify-center">
+                    <p className="text-[10px] uppercase font-bold tracking-[0.2em] opacity-60 mb-1.5 md:mb-2 text-white">
                       FEATURED PROJECT
                     </p>
-                    <h3 className="text-xl md:text-2xl font-bold mb-2 text-white/90 leading-tight">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-white/90 leading-tight">
                       {project.title}
                     </h3>
                     
                     <div className="mb-3">
-                      <p className="text-white/70 font-medium text-[13px] mb-1">
+                      <p className="text-white/70 font-medium text-[13px] sm:text-sm mb-1">
                         {project.summary}
                       </p>
-                      <p className="text-[13px] leading-relaxed text-[#9ca3af]/80 font-light">
+                      <p className="text-[12px] sm:text-[13px] leading-relaxed text-[#9ca3af]/80 font-light">
                         {project.description}
                       </p>
                     </div>
 
                     <ul className="mb-4 space-y-1.5">
                       {project.highlights.map((highlight, i) => (
-                        <li key={i} className="flex items-start text-[12px] text-[#9ca3af]">
+                        <li key={i} className="flex items-start text-[12px] sm:text-[13px] text-[#9ca3af]">
                           <svg className="w-3.5 h-3.5 mr-2 mt-0.5 opacity-50 shrink-0 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                             <polyline points="20 6 9 17 4 12"></polyline>
                           </svg>
@@ -184,8 +184,8 @@ export default function Projects() {
                       </div>
 
                       <div className="flex gap-3">
-                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white transition-colors p-1.5 bg-white/5 rounded-full border border-white/5">
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white active:text-white transition-colors p-2.5 md:p-1.5 bg-white/5 rounded-full border border-white/5">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                         </a>
                       </div>
                     </div>
@@ -193,9 +193,9 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Glowing Background Blob */}
+              {/* Glowing Background Blob — hidden on mobile for performance */}
               <div 
-                className={`absolute w-80 h-80 rounded-full blur-[120px] pointer-events-none z-[-1] top-1/2 -translate-y-1/2 ${
+                className={`hidden md:block absolute w-80 h-80 rounded-full blur-[120px] pointer-events-none z-[-1] top-1/2 -translate-y-1/2 ${
                   isEven ? "left-[45%]" : "right-[45%]"
                 }`}
                 style={{ background: `${project.color}30` }} 
