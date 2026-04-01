@@ -93,7 +93,7 @@ export default function Projects() {
 
   return (
     <section id="projects" ref={sectionRef} className="section relative z-10 py-32">
-      <div className="max-w-6xl mx-auto w-full px-4 md:px-0 flex flex-col gap-32">
+      <div className="max-w-6xl mx-auto w-full px-4 md:px-8 flex flex-col gap-32">
         
         {PROJECTS.map((project, idx) => {
           const isEven = idx % 2 === 0;
@@ -104,12 +104,12 @@ export default function Projects() {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: idx * 0.2 }}
-              className={`relative flex flex-col md:flex-row items-center w-full ${
+              className={`relative flex flex-col md:flex-row w-full ${
                 !isEven ? "md:flex-row-reverse" : ""
-              }`}
+              } items-center`}
             >
               {/* Image Block */}
-              <div className="w-full md:w-3/4 aspect-[16/9] md:aspect-[16/10] bg-[#0a061a] rounded-[2rem] border border-white/5 relative overflow-hidden group">
+              <div className="w-full md:w-[58%] shrink-0 aspect-[16/10] bg-[#0a061a] rounded-[2rem] border border-white/5 relative overflow-hidden group">
                 
                 {project.image ? (
                   <>
@@ -137,39 +137,39 @@ export default function Projects() {
 
               {/* Glowing Background Blob restricted to the intersection area */}
               <div 
-                className={`absolute w-96 h-96 rounded-full blur-[120px] pointer-events-none z-[-1] ${
-                  isEven ? "left-[10%] md:left-[50%]" : "right-[10%] md:right-[50%]"
+                className={`absolute w-96 h-96 rounded-full blur-[120px] pointer-events-none z-[-1] top-1/2 -translate-y-1/2 ${
+                  isEven ? "left-[40%]" : "right-[40%]"
                 }`}
                 style={{ background: `${project.color}40` }} 
               />
 
               {/* Overlapping Text Card */}
               <div
-                className={`w-full md:w-5/12 z-20 mt-[-40px] md:mt-0 ${
-                  isEven ? "md:ml-[-10%]" : "md:mr-[-10%]"
-                }`}
+                className={`w-full md:w-[48%] z-20 mt-[-40px] md:mt-0 ${
+                  isEven ? "md:ml-[-6%]" : "md:mr-[-6%]"
+                } flex items-center`}
               >
-                <div className="p-8 md:p-12 rounded-[2rem] bg-white/[0.03] backdrop-blur-2xl border border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-[1.02]">
+                <div className="w-full p-6 md:p-10 rounded-[2rem] bg-white/[0.03] backdrop-blur-2xl border border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-[1.02]">
                   <p className="text-[10px] uppercase font-bold tracking-[0.2em] opacity-60 mb-3 text-white">
                     FEATURED PROJECT
                   </p>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white/90 leading-tight">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-3 text-white/90 leading-tight">
                     {project.title}
                   </h3>
                   
-                  <div className="mb-6">
-                    <p className="text-white/80 font-medium text-sm md:text-base mb-2">
+                  <div className="mb-4">
+                    <p className="text-white/80 font-medium text-sm mb-1.5">
                       {project.summary}
                     </p>
-                    <p className="text-sm md:text-base leading-relaxed text-[#9ca3af] font-light">
+                    <p className="text-sm leading-relaxed text-[#9ca3af] font-light">
                       {project.description}
                     </p>
                   </div>
 
-                  <ul className="mb-8 space-y-3">
+                  <ul className="mb-6 space-y-2">
                     {project.highlights.map((highlight, i) => (
-                      <li key={i} className="flex items-start text-[13px] md:text-base text-[#9ca3af]">
-                        <svg className="w-4 h-4 mr-3 mt-1 opacity-50 shrink-0 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <li key={i} className="flex items-start text-[13px] text-[#9ca3af]">
+                        <svg className="w-4 h-4 mr-2.5 mt-0.5 opacity-50 shrink-0 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
                         <span className="leading-relaxed">{highlight}</span>
@@ -178,7 +178,7 @@ export default function Projects() {
                   </ul>
 
                   {/* Tech stack & Actions inline */}
-                  <div className="flex flex-col gap-6 mt-auto">
+                  <div className="flex flex-col gap-4 mt-auto">
                     <div className="flex flex-wrap gap-2">
                       {project.techStack.map(tech => (
                         <span key={tech} className="text-[10px] font-medium tracking-wide text-white/40 border border-white/5 bg-white/5 px-2.5 py-1 rounded-full">
