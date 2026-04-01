@@ -104,97 +104,102 @@ export default function Projects() {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: idx * 0.2 }}
-              className={`relative flex flex-col md:flex-row w-full ${
-                !isEven ? "md:flex-row-reverse" : ""
-              } items-center`}
+              className="relative w-full"
             >
-              {/* Image Block */}
-              <div className="w-full md:w-[58%] shrink-0 aspect-[16/10] bg-[#0a061a] rounded-[2rem] border border-white/5 relative overflow-hidden group">
-                
-                {project.image ? (
-                  <>
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="absolute inset-0 w-full h-full object-cover object-[center_top] opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" 
-                    />
-                    <div className="absolute inset-0 shadow-[inset_0_0_80px_rgba(5,5,17,0.95)] pointer-events-none" />
-                    <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#050511] via-[#050511]/40 to-transparent z-10 pointer-events-none" />
-                    {/* Inner glowing border */}
-                    <div className="absolute inset-0 border border-white/10 m-3 rounded-[1.3rem] pointer-events-none" />
-                  </>
-                ) : (
-                  <>
-                    <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-screen" />
-                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#050511] to-transparent z-10" />
-                    
-                    <div className="absolute inset-0 flex flex-col items-center justify-center border-2 border-dashed border-white/10 m-6 rounded-2xl z-0">
-                      <p className="text-white/20 font-mono text-xs md:text-sm tracking-widest uppercase">Visualizing Interface</p>
-                    </div>
-                  </>
-                )}
-              </div>
-
-              {/* Glowing Background Blob restricted to the intersection area */}
-              <div 
-                className={`absolute w-96 h-96 rounded-full blur-[120px] pointer-events-none z-[-1] top-1/2 -translate-y-1/2 ${
-                  isEven ? "left-[40%]" : "right-[40%]"
-                }`}
-                style={{ background: `${project.color}40` }} 
-              />
-
-              {/* Overlapping Text Card */}
+              {/* Grid layout: image and text card share the same row height */}
               <div
-                className={`w-full md:w-[48%] z-20 mt-[-40px] md:mt-0 ${
-                  isEven ? "md:ml-[-6%]" : "md:mr-[-6%]"
-                } flex items-center`}
+                className={`flex flex-col md:flex-row ${
+                  !isEven ? "md:flex-row-reverse" : ""
+                } items-stretch`}
               >
-                <div className="w-full p-6 md:p-10 rounded-[2rem] bg-white/[0.03] backdrop-blur-2xl border border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-[1.02]">
-                  <p className="text-[10px] uppercase font-bold tracking-[0.2em] opacity-60 mb-3 text-white">
-                    FEATURED PROJECT
-                  </p>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-3 text-white/90 leading-tight">
-                    {project.title}
-                  </h3>
+                {/* Image Block — no fixed aspect ratio, stretches to match text card height */}
+                <div className="w-full md:w-[60%] shrink-0 min-h-[280px] md:min-h-[400px] bg-[#0a061a] rounded-[1.5rem] border border-white/5 relative overflow-hidden group">
                   
-                  <div className="mb-4">
-                    <p className="text-white/80 font-medium text-sm mb-1.5">
-                      {project.summary}
-                    </p>
-                    <p className="text-sm leading-relaxed text-[#9ca3af] font-light">
-                      {project.description}
-                    </p>
-                  </div>
+                  {project.image ? (
+                    <>
+                      <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        className="absolute inset-0 w-full h-full object-cover object-[center_top] opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" 
+                      />
+                      <div className="absolute inset-0 shadow-[inset_0_0_80px_rgba(5,5,17,0.95)] pointer-events-none" />
+                      <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#050511] via-[#050511]/40 to-transparent z-10 pointer-events-none" />
+                      {/* Inner glowing border */}
+                      <div className="absolute inset-0 border border-white/10 m-3 rounded-[1rem] pointer-events-none" />
+                    </>
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-screen" />
+                      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#050511] to-transparent z-10" />
+                      
+                      <div className="absolute inset-0 flex flex-col items-center justify-center border-2 border-dashed border-white/10 m-6 rounded-2xl z-0">
+                        <p className="text-white/20 font-mono text-xs md:text-sm tracking-widest uppercase">Visualizing Interface</p>
+                      </div>
+                    </>
+                  )}
+                </div>
 
-                  <ul className="mb-6 space-y-2">
-                    {project.highlights.map((highlight, i) => (
-                      <li key={i} className="flex items-start text-[13px] text-[#9ca3af]">
-                        <svg className="w-4 h-4 mr-2.5 mt-0.5 opacity-50 shrink-0 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        <span className="leading-relaxed">{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Tech stack & Actions inline */}
-                  <div className="flex flex-col gap-4 mt-auto">
-                    <div className="flex flex-wrap gap-2">
-                      {project.techStack.map(tech => (
-                        <span key={tech} className="text-[10px] font-medium tracking-wide text-white/40 border border-white/5 bg-white/5 px-2.5 py-1 rounded-full">
-                          {tech}
-                        </span>
-                      ))}
+                {/* Overlapping Text Card — uses negative margin to overlap image, stretches to same height */}
+                <div
+                  className={`w-full md:w-[46%] z-20 mt-[-30px] md:mt-0 ${
+                    isEven ? "md:ml-[-6%]" : "md:mr-[-6%]"
+                  } flex`}
+                >
+                  <div className="w-full p-6 md:p-8 rounded-[1.5rem] bg-[#0d0b1a]/80 backdrop-blur-2xl border border-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-[1.01] flex flex-col justify-center">
+                    <p className="text-[10px] uppercase font-bold tracking-[0.2em] opacity-60 mb-2 text-white">
+                      FEATURED PROJECT
+                    </p>
+                    <h3 className="text-xl md:text-2xl font-bold mb-2 text-white/90 leading-tight">
+                      {project.title}
+                    </h3>
+                    
+                    <div className="mb-3">
+                      <p className="text-white/70 font-medium text-[13px] mb-1">
+                        {project.summary}
+                      </p>
+                      <p className="text-[13px] leading-relaxed text-[#9ca3af]/80 font-light">
+                        {project.description}
+                      </p>
                     </div>
 
-                    <div className="flex gap-4">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white transition-colors p-2 bg-white/5 rounded-full border border-white/5">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                      </a>
+                    <ul className="mb-4 space-y-1.5">
+                      {project.highlights.map((highlight, i) => (
+                        <li key={i} className="flex items-start text-[12px] text-[#9ca3af]">
+                          <svg className="w-3.5 h-3.5 mr-2 mt-0.5 opacity-50 shrink-0 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                          <span className="leading-relaxed">{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Tech stack & Actions */}
+                    <div className="flex flex-col gap-3 mt-auto">
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.techStack.map(tech => (
+                          <span key={tech} className="text-[10px] font-medium tracking-wide text-white/40 border border-white/5 bg-white/5 px-2 py-0.5 rounded-full">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex gap-3">
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white transition-colors p-1.5 bg-white/5 rounded-full border border-white/5">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+              {/* Glowing Background Blob */}
+              <div 
+                className={`absolute w-80 h-80 rounded-full blur-[120px] pointer-events-none z-[-1] top-1/2 -translate-y-1/2 ${
+                  isEven ? "left-[45%]" : "right-[45%]"
+                }`}
+                style={{ background: `${project.color}30` }} 
+              />
 
             </motion.div>
           );
